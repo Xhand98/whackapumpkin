@@ -49,7 +49,7 @@ async function setup() {
     smashSound = await loadSound("/assets/smash.wav");
     spawnSound = await loadSound("/assets/spawn.wav");
 
-    game = new Game({ run: false, waitTime: 45, loseAmount: 3, level: 1 });
+    game = new Game(false, 45, 3, 1);
     mole = new Mole(0, -1);
 
     for (let r = 0; r < 3; r++) {
@@ -70,7 +70,7 @@ async function setup() {
     playAgain.mousePressed(startGame);
 
     button = createButton("Play");
-    button.position(WIDTH / 2 - 100, height / 2);
+    button.position(WIDTH / 2 - 50, height / 2);
     button.mousePressed(startGame);
     button.style("font-size", "24px", "font-family", "Arial", "border", "0");
 }
