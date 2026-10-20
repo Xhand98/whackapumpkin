@@ -44,14 +44,17 @@ async function setup() {
     frameRate(24); // like movies mehehehe
     try {
         [mazeImg, moleImg, effectImg] = await Promise.all([
-            loadImage("assets/maze.png"),
-            loadImage("assets/mole.png"),
-            loadImage("assets/effect.gif"),
+            loadImage("./assets/maze.png"),
+            loadImage("./assets/mole.png"),
+            loadImage("./assets/effect.gif"),
         ]);
 
-        [smashSound, spawnSound] = await Promise.all([loadSound("assets/smash.wav"), loadSound("assets/spawn.wav")]);
+        [smashSound, spawnSound] = await Promise.all([
+            loadSound("./assets/smash.wav"),
+            loadSound("./assets/spawn.wav"),
+        ]);
     } catch (err) {
-        console.error("Failed to load game assets:", err);
+        console.error("Failed to load game ./assets:", err);
         return;
     }
 
@@ -127,7 +130,7 @@ function draw() {
                 let h = holes[mole.hole];
                 image(moleImg, h.x - SIZE / 2, h.y - SIZE / 2, 64, 64);
             }
-            cursor("assets/maze.png");
+            cursor("./assets/maze.png");
 
             textSize(24);
             fill(255);
