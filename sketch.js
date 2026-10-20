@@ -44,12 +44,12 @@ async function setup() {
     frameRate(24); // like movies mehehehe
     try {
         [mazeImg, moleImg, effectImg] = await Promise.all([
-            loadImage("/assets/maze.png"),
-            loadImage("/assets/mole.png"),
-            loadImage("/assets/effect.gif"),
+            loadImage("assets/maze.png"),
+            loadImage("assets/mole.png"),
+            loadImage("assets/effect.gif"),
         ]);
 
-        [smashSound, spawnSound] = await Promise.all([loadSound("/assets/smash.wav"), loadSound("/assets/spawn.wav")]);
+        [smashSound, spawnSound] = await Promise.all([loadSound("assets/smash.wav"), loadSound("assets/spawn.wav")]);
     } catch (err) {
         console.error("Failed to load game assets:", err);
         return;
