@@ -41,13 +41,19 @@ let smashSound;
 
 async function setup() {
     createCanvas(WIDTH, HEIGHT);
-    frameRate(24);
-    mazeImg = await loadImage("/assets/maze.png");
-    moleImg = await loadImage("/assets/mole.png");
-    effectImg = await loadImage("/assets/effect.gif");
+    frameRate(24); // like movies mehehehe
+    try {
+        [mazeImg, moleImg, effectImg] = await Promise.all([
+            loadImage("/assets/maze.png"),
+            loadImage("/assets/mole.png"),
+            loadImage("/assets/effect.gif"),
+        ]);
 
-    smashSound = await loadSound("/assets/smash.wav");
-    spawnSound = await loadSound("/assets/spawn.wav");
+        [smashSound, spawnSound] = await Promise.all([loadSound("/assets/smash.wav"), loadSound("/assets/spawn.wav")]);
+    } catch (err) {
+        console.error("Failed to load game assets:", err);
+        return;
+    }
 
     game = new Game(false, 45, 3, 1);
     mole = new Mole(0, -1);
@@ -121,7 +127,7 @@ function draw() {
                 let h = holes[mole.hole];
                 image(moleImg, h.x - SIZE / 2, h.y - SIZE / 2, 64, 64);
             }
-            cursor("/assets/maze.png");
+            cursor("assets/maze.png");
 
             textSize(24);
             fill(255);
